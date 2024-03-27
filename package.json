@@ -2,7 +2,11 @@
   "name": "@fireflow/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx run-many --parallel -t serve",
+    "start:backend": "nx serve fireflow-api",
+    "start:frontend": "nx serve fireflow-client"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.3.0",
