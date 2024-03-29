@@ -2,7 +2,7 @@
   "name": "fireflow-client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "fireflow",
   "sourceRoot": "apps/fireflow-client/src",
   "tags": [],
   "targets": {
