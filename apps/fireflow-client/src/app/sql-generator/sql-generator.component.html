@@ -6,9 +6,10 @@
         class="fireflow-sqlgen__input"
         name="Query Request"
         id="query-request"
+        [(ngModel)]="prompt"
       />
-      <button class="fireflow-sqlgen__btn">New</button>
-      <button class="fireflow-sqlgen__btn">Generate</button>
+      <button class="fireflow-sqlgen__btn" [disabled]="prompt.length <= 0">New</button>
+      <button class="fireflow-sqlgen__btn" [disabled]="prompt.length <= 0">Generate</button>
     </div>
 
     <div class="fireflow-sqlgen__code">
