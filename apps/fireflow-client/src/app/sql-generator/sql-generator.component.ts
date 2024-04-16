@@ -25,7 +25,8 @@ export class SqlGeneratorComponent {
 
   generateQuery() {
     if (this.prompt.length > 0) {
-      this.httpClient.post('/api/gen-sql', { content: this.prompt }).subscribe({
+      const promptRequest = `provide the sql query for the following task: ${this.prompt}`;
+      this.httpClient.post('/api/gen-sql', { content: promptRequest }).subscribe({
         next: (data: any) => {
           this.code = data.content;
         },
