@@ -23,9 +23,10 @@
     }
     &__input {
         flex-grow: 1;
-        height: 34px;
+        height: 24px;
         border: 1px solid #666666;
         border-radius: 8px;
+        padding: 4px 12px;
     }
     &__btn {
         height: 34px;
