@@ -39,5 +39,9 @@ export class SqlGeneratorComponent {
 
   private removeCodeBlockMarkers(str: string) {
     return str.replace(/^```sql\s+|\s+```$/g, "");
-  }  
+  }
+
+  clearInput() {
+    this.prompt = '';
+  }
 }
