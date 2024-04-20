@@ -18,13 +18,14 @@ import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
   styleUrl: './sql-generator.component.scss',
 })
 export class SqlGeneratorComponent {
-  code = 'SELECT * FROM users';
+  code = '';
   languages = ['sql'];
   prompt = '';
 
   constructor(private httpClient: HttpClient) { }
 
   generateQuery() {
+    this.code = 'Generating SQL Query...';
     if (this.prompt.length > 0) {
       const promptRequest = `provide the sql query for the following task: ${this.prompt}`;
       this.httpClient.post('/api/gen-sql', { content: promptRequest }).subscribe({
