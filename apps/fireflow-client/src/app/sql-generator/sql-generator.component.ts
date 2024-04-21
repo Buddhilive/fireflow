@@ -21,6 +21,7 @@ export class SqlGeneratorComponent {
   code = '';
   languages = ['sql'];
   prompt = '';
+  copybtn = 'Copy';
 
   constructor(private httpClient: HttpClient) { }
 
