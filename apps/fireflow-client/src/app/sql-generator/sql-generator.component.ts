@@ -46,4 +46,16 @@ export class SqlGeneratorComponent {
   clearInput() {
     this.prompt = '';
   }
+
+  async copyCode() {
+    try {
+      if (!navigator.clipboard) {
+        throw new Error('Clipboard API not supported');
+      }
+      await navigator.clipboard.writeText(this.code);
+      this.copybtn = 'Copied';
+    } catch (err) {
+      console.error('Failed to copy text:', err);
+    }
+  }
 }
