@@ -18,7 +18,7 @@ import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
   styleUrl: './sql-generator.component.scss',
 })
 export class SqlGeneratorComponent {
-  code = '';
+  code = 'we';
   languages = ['sql'];
   prompt = '';
   copybtn = 'Copy';
@@ -54,6 +54,7 @@ export class SqlGeneratorComponent {
       }
       await navigator.clipboard.writeText(this.code);
       this.copybtn = 'Copied';
+      setTimeout(() => this.copybtn = 'Copy', 5000);
     } catch (err) {
       console.error('Failed to copy text:', err);
     }
