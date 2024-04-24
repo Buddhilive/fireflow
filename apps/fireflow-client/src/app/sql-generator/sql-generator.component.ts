@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightModule } from 'ngx-highlightjs';
 import { FormsModule } from '@angular/forms';
@@ -17,13 +17,19 @@ import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
   templateUrl: './sql-generator.component.html',
   styleUrl: './sql-generator.component.scss',
 })
-export class SqlGeneratorComponent {
+export class SqlGeneratorComponent implements AfterViewInit {
+
+  @ViewChild('copybtn') copyBtn!: ElementRef<HTMLButtonElement>;
+
   code = 'we';
   languages = ['sql'];
   prompt = '';
-  copybtn = 'Copy';
 
   constructor(private httpClient: HttpClient) { }
+
+  ngAfterViewInit(): void {
+      this.copyBtn.nativeElement.innerHTML = 'Copy';
+  }
 
   generateQuery() {
     this.code = 'Generating SQL Query...';
@@ -53,8 +59,8 @@ export class SqlGeneratorComponent {
         throw new Error('Clipboard API not supported');
       }
       await navigator.clipboard.writeText(this.code);
-      this.copybtn = 'Copied';
-      setTimeout(() => this.copybtn = 'Copy', 5000);
+      this.copyBtn.nativeElement.innerHTML = 'Copied';
+      setTimeout(() => this.copyBtn.nativeElement.innerHTML = 'Copy', 5000);
     } catch (err) {
       console.error('Failed to copy text:', err);
     }
