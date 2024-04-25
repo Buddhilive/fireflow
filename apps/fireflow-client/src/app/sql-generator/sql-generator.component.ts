@@ -29,6 +29,7 @@ export class SqlGeneratorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
       this.copyBtn.nativeElement.innerHTML = 'Copy';
+      this.copyBtn.nativeElement.disabled = true;
   }
 
   generateQuery() {
@@ -39,6 +40,7 @@ export class SqlGeneratorComponent implements AfterViewInit {
         next: (data) => {
           const content = (data as ISQLPrompt).content;
           this.code = this.removeCodeBlockMarkers(content);
+          this.copyBtn.nativeElement.disabled = false;
         },
         error: (err) => console.log(err)
       });
@@ -51,6 +53,8 @@ export class SqlGeneratorComponent implements AfterViewInit {
 
   clearInput() {
     this.prompt = '';
+    this.copyBtn.nativeElement.disabled = true;
+    this.code = '';
   }
 
   async copyCode() {
@@ -60,7 +64,13 @@ export class SqlGeneratorComponent implements AfterViewInit {
       }
       await navigator.clipboard.writeText(this.code);
       this.copyBtn.nativeElement.innerHTML = 'Copied';
-      setTimeout(() => this.copyBtn.nativeElement.innerHTML = 'Copy', 5000);
+      this.copyBtn.nativeElement.disabled = true;
+      setTimeout(() => {
+        this.copyBtn.nativeElement.innerHTML = 'Copy';
+        if(this.code.length > 0) {
+          this.copyBtn.nativeElement.disabled = false;
+        }
+      }, 5000);
     } catch (err) {
       console.error('Failed to copy text:', err);
     }
