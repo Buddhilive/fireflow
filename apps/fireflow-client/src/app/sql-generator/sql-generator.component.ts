@@ -64,9 +64,11 @@ export class SqlGeneratorComponent implements AfterViewInit {
       }
       await navigator.clipboard.writeText(this.code);
       this.copyBtn.nativeElement.innerHTML = 'Copied';
+      this.copyBtn.nativeElement.classList.toggle('copied');
       this.copyBtn.nativeElement.disabled = true;
       setTimeout(() => {
         this.copyBtn.nativeElement.innerHTML = 'Copy';
+        this.copyBtn.nativeElement.classList.toggle('copied');
         if(this.code.length > 0) {
           this.copyBtn.nativeElement.disabled = false;
         }
