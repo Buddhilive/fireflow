@@ -21,7 +21,7 @@ export class SqlGeneratorComponent implements AfterViewInit {
 
   @ViewChild('copybtn') copyBtn!: ElementRef<HTMLButtonElement>;
 
-  code = 'we';
+  code = '';
   languages = ['sql'];
   prompt = '';
 
@@ -33,8 +33,8 @@ export class SqlGeneratorComponent implements AfterViewInit {
   }
 
   generateQuery() {
-    this.code = 'Generating SQL Query...';
     if (this.prompt.length > 0) {
+      this.code = 'Generating SQL Query...';
       const promptRequest = `provide the sql query for the following task: ${this.prompt}`;
       this.httpClient.post('/api/gen-sql', { content: promptRequest }).subscribe({
         next: (data) => {
@@ -44,6 +44,8 @@ export class SqlGeneratorComponent implements AfterViewInit {
         },
         error: (err) => console.log(err)
       });
+    } else {
+      alert('Prompt is empty!');
     }
   }
 

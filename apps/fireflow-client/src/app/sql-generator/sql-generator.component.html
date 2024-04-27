@@ -8,6 +8,7 @@
         placeholder="Eg: Create a table for students"
         id="query-request"
         [(ngModel)]="prompt"
+        (keyup.enter)="generateQuery()"
       />
       <button
         class="fireflow-sqlgen__btn"
