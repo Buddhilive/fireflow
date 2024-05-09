@@ -32,10 +32,10 @@
       <pre><code [highlight]="code" [languages]="languages"></code></pre>
       <p-button
         class="fireflow-sqlgen__copybtn"
-        icon="pi pi-copy"
+        [icon]="copyBtn.icon"
         (click)="copyCode()"
-        [disabled]="true"
-        #copybtn
+        [disabled]="copyBtn.disabled"
+        [severity]="copyBtn.severity"
       ></p-button>
     </div>
   </div>

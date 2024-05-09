@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightModule } from 'ngx-highlightjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
-import { Button, ButtonModule } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
@@ -23,11 +23,14 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class SqlGeneratorComponent implements AfterViewInit {
 
-  @ViewChild('copybtn') copyBtn!: Button;
-
   code = '';
   languages = ['sql'];
   prompt = '';
+  copyBtn = {
+    icon: 'pi pi-copy',
+    severity: 'secondary',
+    disabled: true
+  };
 
   constructor(private httpClient: HttpClient) { }
 
