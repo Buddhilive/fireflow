@@ -1,6 +1,6 @@
 {
   "name": "@fireflow/source",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "start": "nx run-many --parallel -t serve",
