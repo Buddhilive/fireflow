@@ -26,26 +26,10 @@
     }
     &__input {
         flex-grow: 1;
-        height: 24px;
-        border: 1px solid #666666;
-        border-radius: 8px;
-        padding: 4px 12px;
-    }
-    &__btn {
-        height: 34px;
-        padding: 4px 12px;
-        cursor: pointer;
     }
     &__copybtn {
         position: absolute;
         top: 16px;
         right: 16px;
-        cursor: pointer;
-        &.copied {
-            background-color: #023802;
-            color: #fff;
-            border: 1px solid #023802;
-            border-radius: 4px;
-        }
     }
 }

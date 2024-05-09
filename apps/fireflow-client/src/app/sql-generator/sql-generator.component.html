@@ -7,28 +7,36 @@
         name="Query Request"
         placeholder="Eg: Create a table for students"
         id="query-request"
+        pInputText
         [(ngModel)]="prompt"
         (keyup.enter)="generateQuery()"
       />
       <button
-        class="fireflow-sqlgen__btn"
-        [disabled]="prompt.length <= 0"
-        (click)="clearInput()"
-      >
-        New
-      </button>
-      <button
-        class="fireflow-sqlgen__btn"
+        pButton
+        pRipple
+        label="Generate"
         [disabled]="prompt.length <= 0"
         (click)="generateQuery()"
-      >
-        Generate
-      </button>
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="New"
+        severity="secondary"
+        [disabled]="prompt.length <= 0"
+        (click)="clearInput()"
+      ></button>
     </div>
 
     <div class="fireflow-sqlgen__code">
       <pre><code [highlight]="code" [languages]="languages"></code></pre>
-      <button class="fireflow-sqlgen__copybtn" (click)="copyCode()" #copybtn>Copy</button>
+      <p-button
+        class="fireflow-sqlgen__copybtn"
+        icon="pi pi-copy"
+        (click)="copyCode()"
+        [disabled]="true"
+        #copybtn
+      ></p-button>
     </div>
   </div>
 </div>
