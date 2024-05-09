@@ -1,9 +1,12 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightModule } from 'ngx-highlightjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'fireflow-sql-generator',
@@ -12,24 +15,30 @@ import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
     CommonModule,
     HighlightModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule,
+    InputTextModule,
+    PanelModule
   ],
   templateUrl: './sql-generator.component.html',
   styleUrl: './sql-generator.component.scss',
 })
 export class SqlGeneratorComponent implements AfterViewInit {
 
-  @ViewChild('copybtn') copyBtn!: ElementRef<HTMLButtonElement>;
-
   code = '';
   languages = ['sql'];
   prompt = '';
+  copyBtn = {
+    icon: 'pi pi-copy',
+    severity: 'secondary',
+    disabled: true
+  };
 
   constructor(private httpClient: HttpClient) { }
 
   ngAfterViewInit(): void {
-      this.copyBtn.nativeElement.innerHTML = 'Copy';
-      this.copyBtn.nativeElement.disabled = true;
+      this.copyBtn.icon = 'pi pi-copy';
+      this.copyBtn.severity = 'secondary';
   }
 
   generateQuery() {
@@ -40,7 +49,7 @@ export class SqlGeneratorComponent implements AfterViewInit {
         next: (data) => {
           const content = (data as ISQLPrompt).content;
           this.code = this.removeCodeBlockMarkers(content);
-          this.copyBtn.nativeElement.disabled = false;
+          this.copyBtn.disabled = false;
         },
         error: (err) => console.log(err)
       });
@@ -55,7 +64,7 @@ export class SqlGeneratorComponent implements AfterViewInit {
 
   clearInput() {
     this.prompt = '';
-    this.copyBtn.nativeElement.disabled = true;
+    this.copyBtn.disabled = true;
     this.code = '';
   }
 
@@ -65,14 +74,14 @@ export class SqlGeneratorComponent implements AfterViewInit {
         throw new Error('Clipboard API not supported');
       }
       await navigator.clipboard.writeText(this.code);
-      this.copyBtn.nativeElement.innerHTML = 'Copied';
-      this.copyBtn.nativeElement.classList.toggle('copied');
-      this.copyBtn.nativeElement.disabled = true;
+      this.copyBtn.icon = 'pi pi-check';
+      this.copyBtn.severity = 'success';
+      this.copyBtn.disabled = true;
       setTimeout(() => {
-        this.copyBtn.nativeElement.innerHTML = 'Copy';
-        this.copyBtn.nativeElement.classList.toggle('copied');
+        this.copyBtn.icon = 'pi pi-copy';
+        this.copyBtn.severity = 'secondary';
         if(this.code.length > 0) {
-          this.copyBtn.nativeElement.disabled = false;
+          this.copyBtn.disabled = false;
         }
       }, 5000);
     } catch (err) {
