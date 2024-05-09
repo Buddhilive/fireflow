@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ISQLPrompt } from '../_shared/interfaces/sql-prompt.interface';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'fireflow-sql-generator',
@@ -16,7 +17,8 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     HttpClientModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    PanelModule
   ],
   templateUrl: './sql-generator.component.html',
   styleUrl: './sql-generator.component.scss',

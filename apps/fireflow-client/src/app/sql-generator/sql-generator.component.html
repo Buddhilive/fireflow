@@ -1,5 +1,18 @@
 <div class="fireflow-sqlgen">
   <div class="fireflow-sqlgen__container">
+    <p-panel header="SQL Output">
+      <ng-template pTemplate="icons">
+        <p-button
+        [icon]="copyBtn.icon"
+        (click)="copyCode()"
+        [disabled]="copyBtn.disabled"
+        [severity]="copyBtn.severity"
+        [size]="'small'"
+      ></p-button>
+      </ng-template>
+      <pre class="fireflow-sqlgen__code"><code [highlight]="code" [languages]="languages"></code></pre>
+    </p-panel>
+    
     <div class="fireflow-sqlgen__actions">
       <input
         type="text"
@@ -26,17 +39,6 @@
         [disabled]="prompt.length <= 0"
         (click)="clearInput()"
       ></button>
-    </div>
-
-    <div class="fireflow-sqlgen__code">
-      <pre><code [highlight]="code" [languages]="languages"></code></pre>
-      <p-button
-        class="fireflow-sqlgen__copybtn"
-        [icon]="copyBtn.icon"
-        (click)="copyCode()"
-        [disabled]="copyBtn.disabled"
-        [severity]="copyBtn.severity"
-      ></p-button>
     </div>
   </div>
 </div>
