@@ -17,7 +17,7 @@ export class AppComponent {
     },
     {
       label: 'About',
-      icon: 'pi pi-info',
+      icon: 'pi pi-exclamation-circle',
       link: '/about'
     }
   ];

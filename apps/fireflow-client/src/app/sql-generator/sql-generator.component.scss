@@ -1,8 +1,7 @@
 .fireflow-sqlgen {
-    padding: 16px;
     &__container {
         width: 100%;
-        height: calc(100vh - 32px);
+        height: calc(100vh - 76px);
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -18,7 +17,7 @@
     }
     &__code {
         width: auto;
-        height: calc(100vh - 250px);
+        height: calc(100vh - 320px);
         overflow-y: auto;
     }
     &__input {
