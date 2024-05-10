@@ -1,13 +1,24 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
   standalone: true,
-  imports: [ RouterModule ],
+  imports: [ LayoutComponent ],
   selector: 'fireflow-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'fireflow-client';
+  menuItems = [
+    {
+      label: 'Home',
+      icon: 'pi pi-home',
+      link: '/'
+    },
+    {
+      label: 'About',
+      icon: 'pi pi-exclamation-circle',
+      link: '/about'
+    }
+  ];
 }
